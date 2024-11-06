@@ -32,6 +32,7 @@ class EventFirebaseService {
     event['e21'] = 0;
     event['e22'] = 0;
     event['e23'] = 0;
+    event['staff'] = 0;
     event['id'] = id;
 
     showLoading(context);

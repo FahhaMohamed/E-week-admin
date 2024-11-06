@@ -19,6 +19,7 @@ class EventController extends GetxController {
     e21: 0,
     e22: 0,
     e23: 0,
+    staff: 0,
   ).obs;
 
   void updateEventDetails(FetchedEventsModel fetchedEventsModel) {
@@ -53,6 +54,12 @@ class EventController extends GetxController {
           totalPointsController.totalTeamPoints['e23']!.value++;
         }
         break;
+      case 'staff':
+        if (event.value.staff < event.value.totalPoints) {
+          event.value.staff++;
+          totalPointsController.totalTeamPoints['staff']!.value++;
+        }
+        break;
       default:
         print('Invalid team');
     }
@@ -82,6 +89,12 @@ class EventController extends GetxController {
         if (event.value.e23 > 0) {
           event.value.e23--;
           totalPointsController.totalTeamPoints['e23']!.value--;
+        }
+        break;
+      case 'staff':
+        if (event.value.staff > 0) {
+          event.value.staff--;
+          totalPointsController.totalTeamPoints['staff']!.value--;
         }
         break;
       default:

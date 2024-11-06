@@ -1,10 +1,11 @@
+import 'package:admin/controllers/all_events_controller.dart';
 import 'package:admin/core/contants/global.dart';
 import 'package:admin/views/events/widgets/all_events.dart';
 import 'package:admin/views/events/widgets/day_container.dart';
 import 'package:admin/views/events/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
-
 
 class EventsPage extends StatefulWidget {
   const EventsPage({super.key});
@@ -15,6 +16,7 @@ class EventsPage extends StatefulWidget {
 
 class _EventsPageState extends State<EventsPage> {
   String selectedDay = 'All';
+  AllEventsController allEventsController = Get.put(AllEventsController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +24,24 @@ class _EventsPageState extends State<EventsPage> {
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: Column(
-          children: [
-            //list of days -------------------------------------------------------------------------
-            dateList(),
+        child: RefreshIndicator(
+          color: Colors.red,
+          backgroundColor: Colors.black,
+          onRefresh: () async {
+            allEventsController.getAllEvents();
+          },
+          child: Column(
+            children: [
+              //list of days -------------------------------------------------------------------------
+              dateList(),
 
-            //search functionality -------------------------------------------------------------------------
-            const SearchWidget(),
+              //search functionality -------------------------------------------------------------------------
+              const SearchWidget(),
 
-            //list of events
-            const AllEvents(),
-          ],
+              //list of events
+              const AllEvents(),
+            ],
+          ),
         ),
       )),
     );

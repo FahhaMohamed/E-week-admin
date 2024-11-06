@@ -13,6 +13,7 @@ class FetchedEventsModel {
   RxInt e21;
   RxInt e22;
   RxInt e23;
+  RxInt staff;
   final bool completed;
 
   FetchedEventsModel(
@@ -26,11 +27,13 @@ class FetchedEventsModel {
       required int e20,
       required int e21,
       required int e22,
-      required int e23})
+      required int e23,
+      required int staff})
       : e20 = e20.obs,
         e21 = e21.obs,
         e22 = e22.obs,
-        e23 = e23.obs;
+        e23 = e23.obs,
+        staff = staff.obs;
 
   Map<String, dynamic> updatedEventData() {
     var updatedEvent = {
@@ -44,6 +47,7 @@ class FetchedEventsModel {
       'e21': e21.value,
       'e22': e22.value,
       'e23': e23.value,
+      'staff': staff.value,
       'completed': completed,
     };
 
@@ -63,7 +67,9 @@ FetchedEventsModel event(QueryDocumentSnapshot<Object?> doc) {
       e20: doc['e20'],
       e21: doc['e21'],
       e22: doc['e22'],
-      e23: doc['e23']);
+      e23: doc['e23'],
+      staff: doc['staff'],
+      );
 
   return eventDoc;
 }

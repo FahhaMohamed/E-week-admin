@@ -15,4 +15,5 @@ class AppColors {
   static const e20Color = Color.fromARGB(255, 255, 250, 207);
   static const e22Color = Color.fromARGB(255, 206, 239, 255);
   static const e23Color = Color.fromARGB(255, 251, 229, 255);
+  static const staffColor = Color.fromARGB(255, 237, 255, 229);
 }

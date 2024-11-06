@@ -126,6 +126,30 @@ class _TeamScoreTableState extends State<TeamScoreTable> {
             const SizedBox(
               height: 20,
             ),
+            //Team 5
+            TeamScoresTile(
+              width: widget.width,
+              teamName: "STAFF",
+              teamColor: AppColors.e23Color,
+              teamScore: "${eventController.event.value.staff}",
+              isCompleted: eventController.event.value.completed,
+              increment: () async {
+                eventController.increasePoints('staff');
+                eventFirebaseService.updateEvent(eventController.event.value,
+                    isScore: true);
+                await pointsFirebaseService.updateTotalPoints();
+              },
+              decrement: () async {
+                eventController.decreasePoints('staff');
+                eventFirebaseService.updateEvent(eventController.event.value,
+                    isScore: true);
+                await pointsFirebaseService.updateTotalPoints();
+              },
+            ),
+
+            const SizedBox(
+              height: 20,
+            ),
           ],
         ));
   }

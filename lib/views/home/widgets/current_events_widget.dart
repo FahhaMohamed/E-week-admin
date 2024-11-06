@@ -7,9 +7,9 @@ import 'package:admin/views/detail/detail_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
-// ignore: must_be_immutable
 class CurrentEventsWidget extends StatelessWidget {
   CurrentEventsWidget({
     super.key,
@@ -21,19 +21,38 @@ class CurrentEventsWidget extends StatelessWidget {
   final _userStream = FirebaseFirestore.instance.collection('events');
 
   EventController eventController = Get.put(EventController());
+
   @override
   Widget build(BuildContext context) {
+    String todayDate = DateFormat('dd.MM.yyyy').format(DateTime.now());
+
+    DateTime now = DateTime.now();
+
+    String oneHourBefore = DateFormat('hh:mm a')
+        .format(now.subtract(const Duration(hours: 1)))
+        .toLowerCase();
+    String oneHourAfter = DateFormat('hh:mm a')
+        .format(now.add(const Duration(hours: 1)))
+        .toLowerCase();
+
     return StreamBuilder<QuerySnapshot>(
-        stream: _userStream.snapshots(),
+        stream: _userStream
+            .where('date', isEqualTo: todayDate)
+            .where('time', isGreaterThanOrEqualTo: oneHourBefore)
+            .where('time', isLessThanOrEqualTo: oneHourAfter)
+            .where('completed', isEqualTo: false)
+            .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return Center(
-              child: subHeadingText(text: 'Data loading fail.'),
+              child: subHeadingText(text: 'Data loading failed.'),
             );
           } else if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
-              child: LogoLoadingWidget(width: width * .5),
+              child: LogoLoadingWidget(width: width * .25),
             );
+          } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return const Center(child: Text("No current events available."));
           } else if (snapshot.hasData) {
             var doc = snapshot.data!.docs;
 
@@ -53,6 +72,7 @@ class CurrentEventsWidget extends StatelessWidget {
                               builder: (context) => const DetailPage()));
                         },
                         child: EventContainer(
+                          isAllEvent: false,
                           eventName: eventDoc.eventName,
                           imageUrl: eventDoc.imageUrl,
                           time: eventDoc.time,
@@ -68,44 +88,3 @@ class CurrentEventsWidget extends StatelessWidget {
         });
   }
 }
-
-
-/* 
-StreamBuilder<QuerySnapshot>(
-        stream: _userStream.snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return Center(
-              child: subHeadingText(text: 'Data loading fail.'),
-            );
-          } else if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: LogoLoadingWidget(width: width * .5),
-            );
-          } else if (snapshot.hasData) {
-            var doc = snapshot.data!.docs;
-
-            return SizedBox(
-              child: ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  itemCount: doc.length,
-                  itemBuilder: (context, index) {
-                    return ZoomTapAnimation(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const DetailPage()));
-                        },
-                        child: EventContainer(
-                          width: width,
-                        ));
-                  }),
-            );
-          } else {
-            return Center(
-              child: LogoLoadingWidget(width: width * .5),
-            );
-          }
-        })
-        */

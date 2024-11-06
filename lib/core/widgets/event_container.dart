@@ -10,7 +10,7 @@ class EventContainer extends StatelessWidget {
   EventContainer({
     super.key,
     required this.width,
-    this.isAllEvent = false,
+    required this.isAllEvent,
     required this.eventName,
     required this.imageUrl,
     required this.time,
@@ -21,7 +21,7 @@ class EventContainer extends StatelessWidget {
   final String eventName;
   final String imageUrl;
   final String time;
-  bool? isAllEvent;
+  final bool isAllEvent;
   String? date;
 
   @override
@@ -51,15 +51,15 @@ class EventContainer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 eventText(text: eventName),
-                if (!isAllEvent!) dateText(text: time),
-                if (isAllEvent!)
+                if (!isAllEvent) dateText(text: time),
+                if (isAllEvent)
                   Row(
                     children: [
                       dateText(text: time),
                       const SizedBox(
                         width: 35,
                       ),
-                      dateText(text: date!),
+                      dateText(text: date ?? ''),
                     ],
                   )
               ],

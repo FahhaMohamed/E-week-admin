@@ -1,7 +1,6 @@
 import 'package:admin/core/contants/colors.dart';
 import 'package:flutter/material.dart';
 
-
 class CircleWidget extends StatelessWidget {
   final String label;
   final String number;
@@ -22,7 +21,9 @@ class CircleWidget extends StatelessWidget {
             ? AppColors.e21Color
             : label == "E22"
                 ? AppColors.e22Color
-                : AppColors.e23Color;
+                : label == "STAFF"
+                    ? AppColors.staffColor
+                    : AppColors.e23Color;
 
     return Container(
       width: diameter,

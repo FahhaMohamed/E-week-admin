@@ -142,7 +142,9 @@ class _AllFieldsWidgetState extends State<AllFieldsWidget> {
                         e20: eventController.event.value.e20.value,
                         e21: eventController.event.value.e21.value,
                         e22: eventController.event.value.e22.value,
-                        e23: eventController.event.value.e23.value);
+                        e23: eventController.event.value.e23.value, 
+                        staff: eventController.event.value.staff.value, 
+                        );
 
                     //send the date to firebase
                     await eventFirebaseService.updateEvent(fetchedEventsModel);
