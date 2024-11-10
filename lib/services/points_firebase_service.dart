@@ -15,6 +15,7 @@ class PointsFirebaseService {
         'e21': totalPointsController.totalTeamPoints['e21']!.value,
         'e22': totalPointsController.totalTeamPoints['e22']!.value,
         'e23': totalPointsController.totalTeamPoints['e23']!.value,
+        'staff': totalPointsController.totalTeamPoints['staff']!.value,
       });
     } catch (e) {
       print(e.toString());

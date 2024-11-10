@@ -130,7 +130,7 @@ class _TeamScoreTableState extends State<TeamScoreTable> {
             TeamScoresTile(
               width: widget.width,
               teamName: "STAFF",
-              teamColor: AppColors.e23Color,
+              teamColor: AppColors.staffColor,
               teamScore: "${eventController.event.value.staff}",
               isCompleted: eventController.event.value.completed,
               increment: () async {

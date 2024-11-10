@@ -60,6 +60,7 @@ class _EventsPageState extends State<EventsPage> {
               onTap: () {
                 setState(() {
                   selectedDay = eventDates[index];
+                  allEventsController.filterByDate(selectedDay);
                 });
               },
               child: DayContainer(

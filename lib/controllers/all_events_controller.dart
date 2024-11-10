@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 class AllEventsController extends GetxController {
   var isLoading = false.obs;
   var hasError = false.obs;
+   var fetchedEvents = <QueryDocumentSnapshot<Object?>>[].obs;
   var events = <QueryDocumentSnapshot<Object?>>[].obs;
+   String dateFormat = '11.2024';
   @override
   void onInit() {
     super.onInit();
@@ -19,7 +21,8 @@ class AllEventsController extends GetxController {
       QuerySnapshot snapshot =
           await FirebaseFirestore.instance.collection('events').get();
 
-      events.value = snapshot.docs;
+      fetchedEvents.value = snapshot.docs;
+      events.assignAll(fetchedEvents);
 
       isLoading(false);
       print("Fetching success");
@@ -30,6 +33,17 @@ class AllEventsController extends GetxController {
     } finally {
       isLoading(false);
     }
+  }
+
+  filterByDate(String date) {
+    if (date == 'All' || date.isEmpty) {
+      events.value = fetchedEvents.value;
+    } else {
+      events.value =
+          fetchedEvents.where((event) => event['date'] == "$date.$dateFormat").toList();
+    }
+
+    print(date);
   }
 
   
