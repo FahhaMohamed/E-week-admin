@@ -14,7 +14,7 @@ class EventContainer extends StatelessWidget {
     required this.eventName,
     required this.imageUrl,
     required this.time,
-    this.date,
+    this.date, required this.completed,
   });
 
   final double width;
@@ -22,6 +22,7 @@ class EventContainer extends StatelessWidget {
   final String imageUrl;
   final String time;
   final bool isAllEvent;
+  final bool completed;
   String? date;
 
   @override
@@ -50,6 +51,15 @@ class EventContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                if (completed)
+                        const Padding(
+                          padding: EdgeInsets.only(right: 8.0),
+                          child: Icon(
+                            Icons.check_circle,
+                            size: 20,
+                            color: Color.fromARGB(255, 77, 255, 178),
+                          ),
+                        ),
                 eventText(text: eventName),
                 if (!isAllEvent) dateText(text: time),
                 if (isAllEvent)

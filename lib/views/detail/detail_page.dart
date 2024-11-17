@@ -114,7 +114,9 @@ class _DetailPageState extends State<DetailPage> {
 
                         //complete the event
                         if (!eventController.event.value.completed)
-                          const CompleteButtom(),
+                          CompleteButtom(
+                            docId: eventController.event.value.id,
+                          ),
                       ],
                     ),
                   ),

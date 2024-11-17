@@ -72,6 +72,7 @@ class CurrentEventsWidget extends StatelessWidget {
                               builder: (context) => const DetailPage()));
                         },
                         child: EventContainer(
+                          completed: eventDoc.completed,
                           isAllEvent: false,
                           eventName: eventDoc.eventName,
                           imageUrl: eventDoc.imageUrl,

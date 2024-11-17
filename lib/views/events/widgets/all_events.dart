@@ -59,6 +59,7 @@ class AllEvents extends StatelessWidget {
                     builder: (context) => const DetailPage()));
               },
               child: EventContainer(
+                completed: events['completed'] ?? false,
                 width: w,
                 isAllEvent: true,
                 eventName: events['eventName'] ?? 'No Event Name',

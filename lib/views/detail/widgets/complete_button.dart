@@ -1,13 +1,17 @@
 import 'package:admin/core/contants/colors.dart';
 import 'package:admin/core/utils/heading_text.dart';
+import 'package:admin/core/utils/show_loading.dart';
 import 'package:admin/navigation/bottom_nav.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CompleteButtom extends StatelessWidget {
+  final String docId;
   const CompleteButtom({
     super.key,
+    required this.docId,
   });
 
   @override
@@ -40,11 +44,25 @@ class CompleteButtom extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.successColor,
                           ),
-                          onPressed: () {
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (_) => const BottomNav()));
-                            Get.snackbar('', 'Event successfully completed.');
+                          onPressed: () async {
+                            showLoading(context);
+                            try {
+                              await FirebaseFirestore.instance
+                                  .collection('events')
+                                  .doc(docId)
+                                  .update({
+                                'completed': true,
+                              });
+                              Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                      builder: (_) => const BottomNav()));
+                              Get.snackbar('', 'Event successfully completed.');
+                            } catch (e) {
+                              Get.snackbar('', 'Fail to complete the event.');
+                              Get.back();
+                            } finally {
+                              Get.back();
+                            }
                           },
                           child: eventText(text: 'Complete'))
                     ],
