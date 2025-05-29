@@ -25,7 +25,7 @@ class _TeamScoreTableState extends State<TeamScoreTable> {
 
     return Obx(() => Column(
           children: [
-            //Team 1
+        
             TeamScoresTile(
               width: widget.width,
               teamName: "E20",
@@ -52,7 +52,7 @@ class _TeamScoreTableState extends State<TeamScoreTable> {
               height: 20,
             ),
 
-            //Team 2
+     
             TeamScoresTile(
               width: widget.width,
               teamName: "E21",
@@ -77,7 +77,7 @@ class _TeamScoreTableState extends State<TeamScoreTable> {
               height: 20,
             ),
 
-            //Team 3
+     
             TeamScoresTile(
               width: widget.width,
               teamName: "E22",
@@ -102,7 +102,7 @@ class _TeamScoreTableState extends State<TeamScoreTable> {
               height: 20,
             ),
 
-            //Team 4
+       
             TeamScoresTile(
               width: widget.width,
               teamName: "E23",
@@ -126,7 +126,7 @@ class _TeamScoreTableState extends State<TeamScoreTable> {
             const SizedBox(
               height: 20,
             ),
-            //Team 5
+ 
             TeamScoresTile(
               width: widget.width,
               teamName: "STAFF",

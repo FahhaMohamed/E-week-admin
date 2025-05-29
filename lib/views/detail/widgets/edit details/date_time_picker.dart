@@ -19,25 +19,25 @@ class DateTimePicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Date Picker
+
         ListTile(
           contentPadding: const EdgeInsets.all(0),
           title: Text(
             selectedDate != null
-                ? "Date: ${DateFormat('dd.MM.yyyy').format(selectedDate!)}" // Show the formatted date
+                ? "Date: ${DateFormat('dd.MM.yyyy').format(selectedDate!)}" 
                 : "Select Date",
           ),
           subtitle: const Divider(),
           trailing: const Icon(Icons.calendar_month),
           onTap: onSelectDate,
         ),
-        // Time Picker
+
         ListTile(
           contentPadding: const EdgeInsets.all(0),
           subtitle: const Divider(),
           title: Text(
             selectedTime != null
-                ? "Time: ${selectedTime!.format(context)}"  // Show the formatted time
+                ? "Time: ${selectedTime!.format(context)}" 
                 : "Select Time",
           ),
           trailing: const Icon(Icons.access_time),

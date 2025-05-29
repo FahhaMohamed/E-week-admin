@@ -19,7 +19,6 @@ class EventDateTimePickerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Date Picker
         ListTile(
           contentPadding: const EdgeInsets.all(0),
           title: eventText(
@@ -31,7 +30,6 @@ class EventDateTimePickerWidget extends StatelessWidget {
           trailing: const Icon(Icons.calendar_month),
           onTap: onSelectDate,
         ),
-        // Time Picker
         ListTile(
           contentPadding: const EdgeInsets.all(0),
           subtitle: const Divider(),

@@ -43,14 +43,14 @@ class CircleWidget extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              fontSize: diameter * 0.2, // Adjust size based on diameter
+              fontSize: diameter * 0.2, 
               color: AppColors.iconColor,
             ),
           ),
           Text(
             number,
             style: TextStyle(
-              fontSize: diameter * 0.4, // Larger text for the number
+              fontSize: diameter * 0.4, 
               color: AppColors.iconColor,
             ),
           ),

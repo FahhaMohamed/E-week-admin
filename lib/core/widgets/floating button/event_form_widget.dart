@@ -12,7 +12,6 @@ class EventFormWidget extends StatefulWidget {
   const EventFormWidget({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _EventFormWidgetState createState() => _EventFormWidgetState();
 }
 
@@ -93,12 +92,10 @@ class _EventFormWidgetState extends State<EventFormWidget> {
                 },
               ),
               const SizedBox(height: 10),
-              // Event Name Input
               customTextFeild(context,
                   labelText: 'Event Text',
                   textEditingController: eventEditingController),
               const SizedBox(height: 10),
-              // Event total points input
               customTextFeild(context,
                   labelText: 'Total Points',
                   keyboardType: TextInputType.number,
@@ -111,7 +108,6 @@ class _EventFormWidgetState extends State<EventFormWidget> {
                 onSelectTime: () => _selectTime(context),
               ),
               const SizedBox(height: 20),
-              // Add Event Button
               CupertinoButton(
                 onPressed: () async {
                   if (checkValidity(
@@ -119,7 +115,6 @@ class _EventFormWidgetState extends State<EventFormWidget> {
                       totalPoints: totalPointsEditingController.text,
                       selectedDate: selectedDate,
                       selectedTime: selectedTime)) {
-                    //send the date to firebase
                     await eventFirebaseService.addNewEvent(
                         eventName: eventEditingController.text,
                         totalPoints:

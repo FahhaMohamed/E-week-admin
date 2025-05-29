@@ -69,14 +69,12 @@ class _DetailPageState extends State<DetailPage> {
           child: SingleChildScrollView(
         child: Obx(() => Column(
               children: [
-                //content
                 SingleChildScrollView(
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        //event
                         EventDetails(
                           width: w,
                           onPress: () {
@@ -108,11 +106,10 @@ class _DetailPageState extends State<DetailPage> {
                           },
                         ),
 
-                        //Teams with points
 
                         TeamScoreTable(width: w),
 
-                        //complete the event
+       
                         if (!eventController.event.value.completed)
                           CompleteButtom(
                             docId: eventController.event.value.id,

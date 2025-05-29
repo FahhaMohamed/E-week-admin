@@ -43,7 +43,7 @@ class _SearchWidgetState extends State<SearchWidget> {
         style: const TextStyle(
           decoration: TextDecoration.none,
           color: AppColors.iconColor,
-          height: .75, // Adjust the text's vertical alignment
+          height: .75, 
         ),
         decoration: const InputDecoration(
           hintText: 'Search the event',
@@ -55,7 +55,7 @@ class _SearchWidgetState extends State<SearchWidget> {
             Icons.search,
             color: AppColors.iconColor,
           ),
-          // Center vertically
+         
         ),
       ),
     );

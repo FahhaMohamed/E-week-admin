@@ -14,14 +14,12 @@ TimeOfDay convertTime(String time) {
     final DateTime parsedTime = format.parse(trimmedTime);
     return TimeOfDay.fromDateTime(parsedTime);
   } catch (e) {
-    // ignore: avoid_print
     print('Error parsing time: $e');
     return TimeOfDay.now();
   }
 }
 
 
-//format the date and time
   List<String> formatDateTime(DateTime? selectedDate, TimeOfDay? selectedTime) {
     final dateTime = DateTime(
       selectedDate!.year,
